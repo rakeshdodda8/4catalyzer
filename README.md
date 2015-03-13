@@ -1,5 +1,5 @@
 # 4catalyzer
-(For thumbnails of dicom images...Do "sudo apt-get install imagemagick" or "brew install imagemagick" for mac)
+For thumbnails of dicom images...Install "sudo apt-get install imagemagick" or "brew install imagemagick" for mac
 
     To run the project
         ./manage.py makemigrations dicom
