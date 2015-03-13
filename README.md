@@ -22,7 +22,8 @@ For thumbnails of dicom images...Install "sudo apt-get install imagemagick" or "
                     "file_name":"test.jpg",
                     "size":"764 Bytes"
                  }
-              ]
+              ],
+              "thumbnail":"media/thumbnails/RAKESH_copy.png"
            } 
         ] 
     
