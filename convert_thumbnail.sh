@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash
 image_path=$1
 image=$(basename $image_path)
 dest_filename=$(echo $image |awk -F"." '{print $1}')
