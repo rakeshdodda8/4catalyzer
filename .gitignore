@@ -1,0 +1,4 @@
+*.pyc
+templates/media/images/*
+templates/media/thumbnails/*
+*.DS_Store

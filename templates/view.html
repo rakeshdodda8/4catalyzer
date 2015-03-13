@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+	<title>DICOM View</title>
+	<script>
+	var selDiv = "";
+	document.addEventListener("DOMContentLoaded", init, false);
+	function init() {
+		document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+		selDiv = document.querySelector("#selectedFiles");
+	}
+	function handleFileSelect(e) {
+		console.dir(e);
+		if(!e.target.files) return;
+		selDiv.innerHTML = "";
+		var files = e.target.files;
+		for(var i=0; i<files.length; i++) {
+			var f = files[i];
+			selDiv.innerHTML += f.name + "<br/>";
+		}
+	}
+	</script>
+</head>
+<body>
+	<center><h1>4catalyzer Code Test</h1></center>
+	<br>
+	<form method="post" action="/upload" enctype="multipart/form-data">
+		{% csrf_token %}
+		Enter Keywords: <input type="text" name = "keywords" size=40 required/><br><br>
+		Select Mutiple files: <input name="files" id="files" type="file" multiple="" required/>
+		<div id="selectedFiles"></div>
+		<br/>
+		<input type="submit" value="Submit"/>
+	</form><br>
+	<table width="100%" cellspacing="10">
+		(For thumbnails of dicom images...Do "sudo apt-get install imagemagick" or "brew install imagemagick" for mac)
+		{% for result in info %}
+			{% if forloop.counter0|divisibleby:2 %}
+				<tr>	
+					<td>
+						<table>
+							<tr>
+							<td rowspan=2>
+          						<a href="/download?id={{result.id}}" ><img src="{{result.thumbnail}}" width="100" height="100" /> </a>
+					    	</td>
+					    	</tr>
+					    	<tr>
+					    	<td valign="bottom">
+						    	Uploaded Files: {{result.uploaded_files_info | length}}<br>
+						    	Key Words: {{result.key_words}}
+							</td>
+							</tr>
+						</table>
+					</td>
+			{% else %}
+					<td>
+        				<table>
+							<tr>
+							<td rowspan=2>
+          						<a href="/download?id={{result.id}}" ><img src="{{result.thumbnail}}" width="100" height="100" /> </a>
+					    	</td>
+					    	</tr>
+					    	<tr>
+					    	<td valign="bottom">
+						    	No of Files: {{result.uploaded_files_info | length}}<br>
+						    	Key Words: {{result.key_words}}
+							</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+		</tr>
+	</table>
+</body>
+</html>
