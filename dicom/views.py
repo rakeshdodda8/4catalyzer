@@ -89,11 +89,13 @@ def view_data_api(request):
 	all_files = []
 	for dicom_obj in DicomData.objects.all():
 		dicom_files = DicomFiles.objects.filter(dicom_keywords=dicom_obj)
+		thumbnail = 'media/thumbnails/' + \
+							dicom_files[0].dicom_file.name.split('/')[1].split('.')[0]+".png"
 		tmp = [ 
 				{'file_name': obj.dicom_file.name.split('/')[1], 'size': str(obj.dicom_file.size) + " Bytes"} 
 				for obj in dicom_files 
 				]
-		all_files.append({'key_words': dicom_obj.key_words,
+		all_files.append({'key_words': dicom_obj.key_words, 'thumbnail': thumbnail,
 							'uploaded_files_info': tmp})
 
 	return JSONResponse(json.dumps(all_files))

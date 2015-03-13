@@ -33,7 +33,6 @@
 		<input type="submit" value="Submit"/>
 	</form><br>
 	<table width="100%" cellspacing="10">
-		(For thumbnails of dicom images...Do "sudo apt-get install imagemagick" or "brew install imagemagick" for mac)
 		{% for result in info %}
 			{% if forloop.counter0|divisibleby:2 %}
 				<tr>	
