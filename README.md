@@ -1,6 +1,7 @@
 # 4catalyzer
 For thumbnails of dicom images...Install "sudo apt-get install imagemagick" or "brew install imagemagick" for mac
 
+    For testing purpose I deployed the code in Amazon EC2, IP: http://54.191.36.45/
     To run the project
         ./manage.py makemigrations dicom
         ./manage.py migrate
